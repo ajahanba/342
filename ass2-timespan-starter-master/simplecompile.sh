@@ -12,7 +12,7 @@
 # $ chmod 700 simplecompile.sh
 # redirect the output and stderr from this file to output.txt
 # $ ./simplecompile.sh > output.txt 2>&1
-
+#TO ENABLE CLANGTIDY do this EVERYTIME on linux lab: scl enable llvm-toolset-7.0 bash
 
 date
 
@@ -21,8 +21,8 @@ clang++ --version
 clang++ -std=c++11 -Wall -Wextra -Wno-sign-compare *.cpp -g -o myprogram
 
 # echo "*** running clang-tidy using options from .clang-tidy"
-# clang-tidy --version
-# clang-tidy *.cpp -- -std=c++11
+clang-tidy --version
+clang-tidy *.cpp -- -std=c++11
 
 echo "*** running myprogram"
 ./myprogram
