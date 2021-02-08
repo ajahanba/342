@@ -41,11 +41,17 @@ private:
   // data contained in the object
   int value{0};
 
-  // link to Next SNode
-  vector<SNode *> forward;
+  // link to Next SNode 
+  SNode * forward;
 
   // link to Prev SNode
-  vector<SNode *> backward;
+  SNode * backward;
+   
+  //link to up node 
+  SNode * up;
+
+  // link to down SNode
+  SNode * down;
 
   // how many forward/backward pointers it has
   int height() const;
