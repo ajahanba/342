@@ -51,6 +51,15 @@ int SNode::height() const { return 0; }
 // increase the number of forward/backward pointers it has
 void SNode::increaseHeight() {}
 
+
+
+ // array of Depth SNode* objects as FrontGuards linking levels
+  SNode **FrontGuards;
+
+  // array of Depth SNode* objects as RearGuards linking levels
+  SNode **RearGuards;
+
+
 SkipList::SkipList(int maxLevel, int probability)
     : maxLevel{maxLevel}, probability{probability} {
   assert(maxLevel > 0 && probability >= 0 && probability < 100);
@@ -70,17 +79,42 @@ SkipList::~SkipList() {
 
 bool SkipList::remove(int data) { return true; }
 
+
+
+// Given a SNode, place it before the given NextNode
+void SkipList::addBefore(SNode *NewNode, SNode *NextNode) {
+  // Link next to node in front
+  NewNode->Next = NextNode;
+  // Link prev to node behind
+  NewNode->Prev = NextNode->Prev;
+  // Link node in back to new node
+  NextNode->Prev->Next = NewNode;
+  // Link node in front to new node
+  NextNode->Prev = NewNode;
+}
+
 // get the node that would be before this data
 // at level-0
-vector<SNode *> SkipList::getBeforeNodes(int data) const {
-  vector<SNode *> v(maxLevel);
-  return v;
-}
+//vector<SNode *> SkipList::getBeforeNodes(int data) const {
+//  vector<SNode *> v(maxLevel);
+//  return v;
+//}
+
+// Checks to see whether or not a data value exists in the list
+// Returns the NODE if the value exists in the SkipList.
+// Returns nullptr otherwise
 
 SNode *SkipList::containsSNode(int data) const { return nullptr; }
 
+// Checks to see whether or not a data value exists in the list
+// Returns true if the value exists in the SkipList.
+// Returns false otherwise
+
 bool SkipList::contains(int data) const { return true; }
 
+
+
+//private methods to ease linking
 void SkipList::connect2AtLevel(SNode *a, SNode *b, int level) {}
 
 void SkipList::connect3AtLevel(SNode *a, SNode *b, SNode *c, int level) {}
