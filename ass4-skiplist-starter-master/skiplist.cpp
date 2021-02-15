@@ -1,5 +1,5 @@
 
-//
+//modified by mashhadi on 14th feb to add an alternative op<<
 
 #include <cassert>
 #include <climits>
@@ -9,6 +9,22 @@
 #include "skiplist.h"
 
 using namespace std;
+/*
+ostream &operator<<(ostream &Out, const SkipList &SkipL) {
+  for (int Index = SkipL.Depth - 1; Index >= 0; Index--) {
+    Out << "Level: " + to_string(Index) + " -- ";
+    SkipList::SNode* Curr = SkipL.FrontGuards[Index];
+    while(Curr != nullptr) {
+      Out<< to_string(Curr->Data) + ", ";
+      Curr = Curr->Next;
+    }
+    Out << "\n";
+  }
+  return Out;
+}
+
+
+
 
 ostream &operator<<(ostream &out, const SkipList &skip) {
   for (int d = skip.maxLevel - 1; d >= 0; d--) {
@@ -26,7 +42,7 @@ ostream &operator<<(ostream &out, const SkipList &skip) {
   }
   return out;
 }
-
+*/
 SNode::SNode(int value) : value{value} {}
 
 // how many forward/backward pointers it has
